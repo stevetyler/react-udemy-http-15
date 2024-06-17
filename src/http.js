@@ -5,7 +5,6 @@ export async function fetchAvailablePlaces() {
     if(!response.ok) {
         throw new Error('Failed to fetch places');
     }
-    //console.log('resData type', resData);
     return resData;
 }
 
