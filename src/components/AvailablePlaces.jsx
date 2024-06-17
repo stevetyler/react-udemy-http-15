@@ -14,11 +14,11 @@ export default function AvailablePlaces({ onSelectPlace }) {
       setIsFetching(true);
 
       try {
-        const places = await fetchAvailablePlaces();
+        const json = await fetchAvailablePlaces();
 
         navigator.geolocation.getCurrentPosition((position) => {
           const sortedPlaces = sortPlacesByDistance(
-            places, 
+            json.places, 
             position.coords.latitude, 
             position.coords.longitude
           );
@@ -31,9 +31,12 @@ export default function AvailablePlaces({ onSelectPlace }) {
         setIsFetching(false);
       }
     }
+
     fetchPlaces();
   }, [])
   
+  
+
   if (error) {
     return <Error title="An error occurred" message={error.message}/>;
   }
