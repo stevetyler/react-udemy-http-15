@@ -5,5 +5,19 @@ export async function fetchAvailablePlaces() {
     if(!response.ok) {
         throw new Error('Failed to fetch places');
     }
+    console.log('resData type', resData);
+    return resData;
+}
+
+export async function updateUserPlaces(places) {
+    const response = await fetch('localehost:3000/user-places', {
+        method: 'PUT',
+        body: JSON.stringify(places),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const resData = await response.json();
+
     return resData;
 }
