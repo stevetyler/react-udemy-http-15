@@ -35,18 +35,17 @@ export default function AvailablePlaces({ onSelectPlace }) {
     fetchPlaces();
   }, [])
   
-  if (error) {
-    return <Error title="An error occurred" message={error.message}/>;
-  }
-
   return (
-    <Places
-      title="Available Places"
-      places={availablePlaces}
-      fallbackText="No places available."
-      loadingText="Fetching places..."
-      isLoading={isFetching}
-      onSelectPlace={onSelectPlace}
-    />
+    <>
+      {error && <Error title="An error occurred" message={error.message}/>}
+      <Places
+        title="Available Places"
+        places={availablePlaces}
+        fallbackText="No places available."
+        loadingText="Fetching places..."
+        isLoading={isFetching}
+        onSelectPlace={onSelectPlace}
+      />
+    </>
   );
 }
